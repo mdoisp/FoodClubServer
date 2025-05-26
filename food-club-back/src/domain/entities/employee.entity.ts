@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export class Employee {
     id: string;
     name: string;

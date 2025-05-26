@@ -1,5 +1,12 @@
 import { Sequelize } from "sequelize-typescript"
-import { ProductEntity } from "./entities/product.entity";
+import { DishEntity } from "./entities/dish.entity";
+import { CompanyEntity } from "./entities/company.entity";
+import { EmployeeEntity } from "./entities/employee.entity";
+import { OrderEntity } from "./entities/order.entity";
+import { RestaurantEntity } from "./entities/restaurant.entity";
+import { RestaurantDishEntity } from "./entities/restaurant-dish.entity";
+import { CompanyEmployeeEntity } from "./entities/company-employee.entity";
+import { UserEntity } from "./entities/user.entity";
 
 export const databaseProvider = [
     {
@@ -10,7 +17,7 @@ export const databaseProvider = [
                 dialect: 'sqlite'
             });
 
-            sequelize.addModels([ProductEntity]);
+            sequelize.addModels([DishEntity, CompanyEntity, EmployeeEntity, OrderEntity, RestaurantEntity, UserEntity, RestaurantDishEntity, CompanyEmployeeEntity]);
             return sequelize;
         }
     }

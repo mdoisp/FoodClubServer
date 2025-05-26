@@ -9,9 +9,6 @@ export class UpdateRestaurantUseCase {
   }
 }
 
-// src/core/use-cases/restaurant/delete-restaurant.use-case.ts
-import { RestaurantRepository } from '../../repositories/restaurant.repository';
-
 export class DeleteRestaurantUseCase {
   constructor(private readonly restaurantRepository: RestaurantRepository) {}
 

@@ -9,10 +9,6 @@ export class GetRestaurantUseCase {
   }
 }
 
-// src/core/use-cases/restaurant/get-all-restaurants.use-case.ts
-import { Restaurant } from '../../entities/restaurant.entity';
-import { RestaurantRepository } from '../../repositories/restaurant.repository';
-
 export class GetAllRestaurantsUseCase {
   constructor(private readonly restaurantRepository: RestaurantRepository) {}
 
