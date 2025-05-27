@@ -5,7 +5,7 @@ import { CreateCompanyService } from './services/create-company.service';
 import { UpdateCompanyService } from './services/update-company.service';
 import { DeleteCompanyService } from './services/delete-company.service';
 import { DatabaseModule } from 'src/database/database.module';
-import { CompanyRepository } from 'src/database/repositories/Company.repository';
+import { CompanyRepository } from 'src/database/repositories/company.repository';
 import { companyProvider } from './../../database/providers/company.provider';
 import { ListCompaniesService } from './services/list-companies.service';
 

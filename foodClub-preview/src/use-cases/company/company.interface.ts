@@ -1,4 +1,4 @@
-import { EmployeeInterface } from "../employee/Employee.interface";
+import { EmployeeInterface } from "../employee/employee.interface";
 
 export interface CompanyInterface {
     id: number;
