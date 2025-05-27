@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { DishInterface } from "src/use-cases/dish/dish.interface";
+import { Dish } from "src/domain/models/dish.model";
 
 export class ListRestaurantDtoResponse {
     @ApiProperty({
@@ -63,5 +63,5 @@ export class ListRestaurantDtoResponse {
         items: { type: 'object' },
         description: 'Lista de pratos do restaurante',
     })
-    dishes?: DishInterface[];
+    dishes?: Dish[];
 }

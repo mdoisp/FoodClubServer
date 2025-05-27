@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { DishInterface } from "src/use-cases/dish/dish.interface";
+import { Dish } from "src/domain/models/dish.model";
 
 export class CreateRestaurantDto {
     @ApiProperty({
@@ -61,5 +61,5 @@ export class CreateRestaurantDto {
             },
         ],
     })
-    dishes?: DishInterface[];
+    dishes?: Dish[];
 }

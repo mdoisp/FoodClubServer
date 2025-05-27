@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
-import { DishModule } from './use-cases/dish/dish.module';
-import { DatabaseModule } from './database/database.module';
-import { DishController } from './use-cases/dish/dish.controller';
-import { CompanyModule } from './use-cases/company/company.module';
-import { EmployeeModule } from './use-cases/employee/employee.module';
-import { OrderModule } from './use-cases/order/order.module';
-import { RestaurantModule } from './use-cases/restaurant/restaurant.module';
-import { EmployeeController } from './use-cases/employee/employee.controller';
+import { DishModule } from './application/use-cases/dish/dish.module';
+import { InfrastructureModule } from './infrastructure/infrastructure.module';
+import { DishController } from './interfaces/http/controllers/dish.controller';
+import { CompanyModule } from './application/use-cases/company/company.module';
+import { EmployeeModule } from './application/use-cases/employee/employee.module';
+import { OrderModule } from './application/use-cases/order/order.module';
+import { RestaurantModule } from './application/use-cases/restaurant/restaurant.module';
+import { EmployeeController } from './interfaces/http/controllers/employee.controller';
 // import { OrderController } from './use-cases/order/order.controller';
-import { RestaurantController } from './use-cases/restaurant/restaurant.controller';
-import { CompanyController } from './use-cases/company/company.controller';
-import { UserController } from './use-cases/user/user.controller';
-import { UserModule } from './use-cases/user/user.module';
+import { RestaurantController } from './interfaces/http/controllers/restaurant.controller';
+import { CompanyController } from './interfaces/http/controllers/company.controller';
+import { UserController } from './interfaces/http/controllers/user.controller';
+import { UserModule } from './application/use-cases/user/user.module';
 @Module({
-  imports: [CompanyModule, DishModule, DatabaseModule, EmployeeModule/*, OrderModule*/, RestaurantModule, UserModule],
+  imports: [CompanyModule, DishModule, InfrastructureModule, EmployeeModule/*, OrderModule*/, RestaurantModule, UserModule],
   controllers: [CompanyController, DishController, EmployeeController/*, OrderController*/, RestaurantController,UserController],
   providers: [],
 })
