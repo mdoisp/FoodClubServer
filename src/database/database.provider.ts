@@ -10,7 +10,7 @@ import { CompanyAffiliateRestaurantEntity } from "./entities/company-affiliate-r
 import { IndividualOrderEntity } from "./entities/individual-order.entity";
 import { EmployeeWeeklyOrdersEntity } from "./entities/employee-weekly-orders.entity";
 import { CompanyOrderEntity } from "./entities/company-order.entity";
-import * as config from './config';
+import * as config from '../../config/database';
 
 export const databaseProvider = [
     {
