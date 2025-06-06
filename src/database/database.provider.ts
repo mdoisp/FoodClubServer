@@ -10,29 +10,21 @@ import { CompanyAffiliateRestaurantEntity } from "./entities/company-affiliate-r
 import { IndividualOrderEntity } from "./entities/individual-order.entity";
 import { EmployeeWeeklyOrdersEntity } from "./entities/employee-weekly-orders.entity";
 import { CompanyOrderEntity } from "./entities/company-order.entity";
-import * as config from '../../config/database';
+import * as config from './config';
 
 export const databaseProvider = [
     {
         provide: 'SEQUELIZE',
         useFactory: async () => {
+            const env = process.env.NODE_ENV || 'development';
+            const dbConfig = config[env];
+            
             let sequelize: Sequelize;
             
-            if (process.env.NODE_ENV === 'production') {
-                sequelize = new Sequelize(process.env.DATABASE_URL, {
-                    dialect: 'postgres',
-                    dialectOptions: {
-                        ssl: {
-                            require: true,
-                            rejectUnauthorized: false
-                        }
-                    }
-                });
+            if (dbConfig.use_env_variable) {
+                sequelize = new Sequelize(process.env[dbConfig.use_env_variable], dbConfig);
             } else {
-                sequelize = new Sequelize({
-                    dialect: 'sqlite',
-                    storage: './database.sqlite'
-                });
+                sequelize = new Sequelize(dbConfig);
             }
 
             sequelize.addModels([
