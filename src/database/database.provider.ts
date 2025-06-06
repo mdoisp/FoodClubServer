@@ -10,19 +10,51 @@ import { CompanyAffiliateRestaurantEntity } from "./entities/company-affiliate-r
 import { IndividualOrderEntity } from "./entities/individual-order.entity";
 import { EmployeeWeeklyOrdersEntity } from "./entities/employee-weekly-orders.entity";
 import { CompanyOrderEntity } from "./entities/company-order.entity";
+import * as config from './config';
 
 export const databaseProvider = [
     {
         provide: 'SEQUELIZE',
         useFactory: async () => {
-            const sequelize = new Sequelize({
-                storage: './database.sqlite',
-                dialect: 'sqlite'
-            });
+            let sequelize: Sequelize;
+            
+            if (process.env.NODE_ENV === 'production') {
+                sequelize = new Sequelize(process.env.DATABASE_URL, {
+                    dialect: 'postgres',
+                    dialectOptions: {
+                        ssl: {
+                            require: true,
+                            rejectUnauthorized: false
+                        }
+                    }
+                });
+            } else {
+                sequelize = new Sequelize({
+                    dialect: 'sqlite',
+                    storage: './database.sqlite'
+                });
+            }
 
-            sequelize.addModels([DishEntity, CompanyEntity, EmployeeEntity, RestaurantEntity, UserEntity, DishRatingEntity, OrderItemEntity,
-                                 CompanyAffiliateRestaurantEntity, IndividualOrderEntity, EmployeeWeeklyOrdersEntity, CompanyOrderEntity]);
+            sequelize.addModels([
+                DishEntity, 
+                CompanyEntity, 
+                EmployeeEntity, 
+                RestaurantEntity, 
+                UserEntity, 
+                DishRatingEntity, 
+                OrderItemEntity,
+                CompanyAffiliateRestaurantEntity, 
+                IndividualOrderEntity, 
+                EmployeeWeeklyOrdersEntity, 
+                CompanyOrderEntity
+            ]);
+
+            // Sincroniza os modelos com o banco de dados em desenvolvimento
+            if (process.env.NODE_ENV !== 'production') {
+                await sequelize.sync();
+            }
+
             return sequelize;
         }
     }
-]
+];
