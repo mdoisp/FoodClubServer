@@ -33,6 +33,7 @@ WORKDIR /app
 
 # Copia apenas os arquivos necessários do estágio de build
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/src/database/migrations ./src/database/migrations
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/.sequelizerc ./
 COPY --from=builder /app/config ./config
