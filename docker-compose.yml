@@ -1,39 +1,20 @@
 version: '3.8'
 
 services:
-  # Serviço do backend
   api:
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile
     container_name: foodclub-api
+    environment:
+      NODE_ENV: production
+      DATABASE_HOST: dpg-d11dmee3jp1c73cabolg-a
+      DATABASE_PORT: 5432
+      DATABASE_USER: foodclub_db_user
+      DATABASE_NAME: foodclub_db
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}  # Será pego do arquivo .env
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=production
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/foodclub
-      - JWT_SECRET=${JWT_SECRET}
-      - JWT_EXPIRATION=${JWT_EXPIRATION}
-    depends_on:
-      - db
-    networks:
-      - foodclub-network
-    restart: unless-stopped
-
-  # Serviço do banco de dados
-  db:
-    image: postgres:15-alpine
-    container_name: foodclub-db
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=foodclub
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - foodclub-network
     restart: unless-stopped
 
 networks:
