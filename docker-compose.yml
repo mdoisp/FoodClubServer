@@ -2,19 +2,14 @@ version: '3.8'
 
 services:
   api:
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    image: ${DOCKER_USERNAME}/foodclub-api:latest
     container_name: foodclub-api
     environment:
       NODE_ENV: production
-      DATABASE_HOST: dpg-d11dmee3jp1c73cabolg-a
-      DATABASE_PORT: 5432
-      DATABASE_USER: foodclub_db_user
-      DATABASE_NAME: foodclub_db
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}  # Será pego do arquivo .env
+      DATABASE_URL: ${DATABASE_URL}
+      PORT: ${PORT}
     ports:
-      - "3000:3000"
+      - "${PORT}:${PORT}"
     restart: unless-stopped
 
 networks:
